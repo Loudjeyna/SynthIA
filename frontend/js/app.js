@@ -25,8 +25,12 @@ const App = (function() {
             models: p('admin_models.html'),
             training: p('admin_training.html'),
             model_details: p('admin_model_details.html'),
+<<<<<<< HEAD
             comparison: p('model_comparison.html'),
             augmentation: p('admin_augmentation.html')
+=======
+            comparison: p('model_comparison.html')
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         }
     };
 
@@ -44,6 +48,7 @@ const App = (function() {
         window.location.href = routes[role] || PAGES.login;
     }
 
+<<<<<<< HEAD
     function _t(key) {
         if (typeof I18nService !== 'undefined' && I18nService.t) {
             return I18nService.t(key);
@@ -51,6 +56,8 @@ const App = (function() {
         return key;
     }
 
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     function setupSidebar() {
         const user = AuthService.getCurrentUser();
         if (!user) return;
@@ -59,6 +66,7 @@ const App = (function() {
         
         const links = [];
         if (user.role === 'admin') {
+<<<<<<< HEAD
             links.push({ href: PAGES.admin.home, icon: 'home', label: 'sidebar.dashboard' });
             links.push({ href: PAGES.admin.training, icon: 'gear', label: 'sidebar.new_training' });
             links.push({ href: PAGES.admin.models, icon: 'database', label: 'sidebar.models' });
@@ -85,11 +93,40 @@ const App = (function() {
         }
 
         var currentPage = window.location.pathname.split('/').pop();
+=======
+            links.push({ href: PAGES.admin.home, icon: 'home', label: 'Dashboard' });
+            links.push({ href: PAGES.admin.training, icon: 'gear', label: 'New Training' });
+            links.push({ href: PAGES.admin.models, icon: 'database', label: 'Models' });
+            links.push({ href: PAGES.company.generate, icon: 'database', label: 'Generate Data' });
+            links.push({ href: PAGES.admin.users, icon: 'users', label: 'Users' });
+            links.push({ href: PAGES.company.datasets, icon: 'file', label: 'Datasets' });
+            links.push({ href: PAGES.admin.comparison, icon: 'chart', label: 'Model Comparison' });
+        } else if (user.role === 'company') {
+            links.push({ href: PAGES.company.home, icon: 'home', label: 'Dashboard' });
+            links.push({ href: PAGES.company.generate, icon: 'database', label: 'Generate Data' });
+            links.push({ href: PAGES.company.datasets, icon: 'file', label: 'Datasets' });
+            links.push({ href: PAGES.company.comparison, icon: 'chart', label: 'Model Comparison' });
+            links.push({ href: p('subscription.html'), icon: 'star', label: 'Subscription' });
+        } else {
+            links.push({ href: PAGES.farmer.home, icon: 'home', label: 'Dashboard' });
+            links.push({ href: PAGES.farmer.predict, icon: 'brain', label: 'Crop Prediction' });
+            links.push({ href: PAGES.farmer.crop_conditions, icon: 'seedling', label: 'Crop \u2192 Conditions' });
+            links.push({ href: PAGES.farmer.conditions_crop, icon: 'search', label: 'Conditions \u2192 Crop' });
+            links.push({ href: PAGES.farmer.history, icon: 'history', label: 'History' });
+            links.push({ href: p('subscription.html'), icon: 'star', label: 'Subscription' });
+        }
+
+        const currentPage = window.location.pathname.split('/').pop();
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         nav.innerHTML = links.map(l => {
             const isActive = currentPage === l.href ? 'active' : '';
             return '<a href="' + l.href + '" class="' + isActive + '">' +
                 '<svg viewBox="0 0 24 24"><path d="' + getIconPath(l.icon) + '"/></svg>' +
+<<<<<<< HEAD
                 '<span>' + _t(l.label) + '</span></a>';
+=======
+                '<span>' + l.label + '</span></a>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         }).join('');
     }
 
@@ -126,6 +163,7 @@ const App = (function() {
         if (btn) btn.addEventListener('click', function() { AuthService.logout(); window.location.href = p('login.html'); });
     }
 
+<<<<<<< HEAD
     function setupLanguageSwitcher() {
         if (typeof I18nService === 'undefined') return;
         var sidebar = document.querySelector('.sidebar');
@@ -166,6 +204,8 @@ const App = (function() {
         });
     }
 
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     // Global logout safety: event delegation catches clicks even if setupLogout() was never called
     document.addEventListener('click', function(e) {
         var target = e.target;
@@ -180,5 +220,9 @@ const App = (function() {
         }
     });
 
+<<<<<<< HEAD
     return { init, setupSidebar, setupUserPanel, setupLogout, setupLanguageSwitcher, PAGES };
+=======
+    return { init, setupSidebar, setupUserPanel, setupLogout, PAGES };
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 })();

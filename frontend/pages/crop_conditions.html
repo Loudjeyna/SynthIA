@@ -21,6 +21,7 @@
 <body>
     <div class="app-container">
         <aside class="sidebar">
+<<<<<<< HEAD
             <div class="sidebar-brand"><img src="logo.png" alt="SynthAI" class="sidebar-logo"><h1 data-i18n="app.name">SynthAI</h1><p data-i18n="app.tagline">Smart Agricultural Intelligence</p></div>
             <div id="user-panel"></div>
             <nav class="sidebar-nav" id="sidebar-nav"></nav>
@@ -28,20 +29,38 @@
         </aside>
         <main class="main-content">
             <div class="page-header"><h2 data-i18n="conditions.title">Crop to Conditions</h2><p data-i18n="conditions.subtitle">Select a crop to discover its optimal growing conditions</p></div>
+=======
+            <div class="sidebar-brand"><h1>SynthAI</h1><p>Smart Agricultural Intelligence</p></div>
+            <div id="user-panel"></div>
+            <nav class="sidebar-nav" id="sidebar-nav"></nav>
+            <div style="padding: 1rem; margin-top: 2rem;"><button id="logout-btn" class="btn btn-outline" style="width: 100%; border-color: rgba(255,255,255,0.2); color: white;">Logout</button></div>
+        </aside>
+        <main class="main-content">
+            <div class="page-header"><h2>Crop to Conditions</h2><p>Select a crop to discover its optimal growing conditions</p></div>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             <div id="status-msg"></div>
             <div class="card">
                 <div class="form-row">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="crop-select" data-i18n="conditions.select">Select a Crop</label>
                         <select id="crop-select" class="form-control"></select>
                     </div>
                     <div class="form-group" style="display: flex; align-items: flex-end;">
                         <button id="get-btn" class="btn btn-primary" data-i18n="conditions.get">Get Optimal Conditions</button>
+=======
+                        <label for="crop-select">Select a Crop</label>
+                        <select id="crop-select" class="form-control"></select>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: flex-end;">
+                        <button id="get-btn" class="btn btn-primary">Get Optimal Conditions</button>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     </div>
                 </div>
             </div>
             <div id="result-area" style="display: none;">
                 <div class="card">
+<<<<<<< HEAD
                     <h3 class="card-title" data-i18n="conditions.optimal">Optimal Growing Conditions</h3>
                     <div class="condition-cards" id="main-conditions"></div>
                 </div>
@@ -52,11 +71,26 @@
                 <div style="display: flex; gap: 0.5rem;">
                     <button id="export-btn" class="btn btn-outline" data-i18n="conditions.download">Download as CSV</button>
                     <button id="try-another-btn" class="btn btn-outline" data-i18n="conditions.try_another">Try Another Crop</button>
+=======
+                    <h3 class="card-title">Optimal Growing Conditions</h3>
+                    <div class="condition-cards" id="main-conditions"></div>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Nutrient & Resource Requirements</h3>
+                    <div class="condition-cards" id="nutrient-conditions"></div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button id="export-btn" class="btn btn-outline">Download as CSV</button>
+                    <button id="try-another-btn" class="btn btn-outline">Try Another Crop</button>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 </div>
             </div>
         </main>
     </div>
+<<<<<<< HEAD
     <script src="../js/services/i18n.js"></script>
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     <script src="../js/services/auth.js"></script>
     <script src="../js/services/history.js"></script>
     <script src="../js/services/recommendation.js"></script>
@@ -65,6 +99,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const user = AuthService.getCurrentUser();
             if (!user) { window.location.href = '/pages/login.html'; return; }
+<<<<<<< HEAD
             if (user.role !== 'farmer' && user.role !== 'admin') { document.querySelector('.main-content').innerHTML = '<div class="page-header"><h2>Access Denied</h2><p>This page is for farmers only.</p><a href="login.html" class="btn btn-primary">Go Back</a></div>'; return; }
             AuthService.syncSessionFromStorage();
             App.setupSidebar();
@@ -73,6 +108,15 @@ try { App.setupLanguageSwitcher(); } catch (e) {} App.setupUserPanel(); App.setu
             var crops = RecommendationService.getCrops();
             var select = document.getElementById('crop-select');
             select.innerHTML = '<option value="">-- Select a crop --</option>' + crops.map(function(c) { return '<option value="' + c + '">' + RecommendationService.getCropDisplayName(c) + '</option>'; }).join('');
+=======
+            if (user.role !== 'farmer') { document.querySelector('.main-content').innerHTML = '<div class="page-header"><h2>Access Denied</h2><p>This page is for farmers only.</p><a href="login.html" class="btn btn-primary">Go Back</a></div>'; return; }
+            AuthService.syncSessionFromStorage();
+            App.setupSidebar(); App.setupUserPanel(); App.setupLogout();
+
+            var crops = RecommendationService.getCrops();
+            var select = document.getElementById('crop-select');
+            select.innerHTML = '<option value="">-- Choisir une culture --</option>' + crops.map(function(c) { return '<option value="' + c + '">' + RecommendationService.getCropDisplayName(c) + '</option>'; }).join('');
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 
             function getLevelColor(level) {
                 const map = { Low: '#66BB6A', Medium: '#FF9800', High: '#F44336' };
@@ -125,6 +169,9 @@ try { App.setupLanguageSwitcher(); } catch (e) {} App.setupUserPanel(); App.setu
             });
         });
     </script>
+<<<<<<< HEAD
 <script>if (typeof I18nService !== 'undefined') I18nService.translatePage();</script>
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 </body>
 </html>

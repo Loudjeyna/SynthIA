@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title data-i18n="dashboard.title">SynthAI - Admin Dashboard</title>
     <link rel="stylesheet" href="../styles/global.css">
     <style>
@@ -49,10 +50,15 @@
         @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } .tables-grid { grid-template-columns: 1fr; } }
         @media (max-width: 600px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
+=======
+    <title>SynthAI - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/global.css">
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 </head>
 <body>
     <div class="app-container">
         <aside class="sidebar">
+<<<<<<< HEAD
             <div class="sidebar-brand"><img src="logo.png" alt="SynthAI" class="sidebar-logo"><h1 data-i18n="app.name">SynthAI</h1><p data-i18n="app.tagline">Smart Agricultural Intelligence</p></div>
             <div id="user-panel"></div>
             <nav class="sidebar-nav" id="sidebar-nav"></nav>
@@ -108,6 +114,27 @@
         </main>
     </div>
     <script src="../js/services/i18n.js"></script>
+=======
+            <div class="sidebar-brand"><h1>SynthAI</h1><p>Smart Agricultural Intelligence</p></div>
+            <div id="user-panel"></div>
+            <nav class="sidebar-nav" id="sidebar-nav"></nav>
+            <div style="padding: 1rem; margin-top: 2rem;"><button id="logout-btn" class="btn btn-outline" style="width: 100%; border-color: rgba(255,255,255,0.2); color: white;">Logout</button></div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header"><h2>Dashboard</h2><p>System overview and quick actions</p></div>
+            <div class="kpi-grid" id="kpi-grid"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+                <div class="card"><h3 class="card-title">Generate Data</h3><p style="color: #666; margin-bottom: 1rem;">Generate synthetic data from trained models.</p><a href="generate_data.html" class="btn btn-primary" style="text-decoration: none; text-align: center;">Go</a></div>
+                <div class="card"><h3 class="card-title">Models</h3><p style="color: #666; margin-bottom: 1rem;">View all trained CTGAN models.</p><a href="admin_models.html" class="btn btn-primary" style="text-decoration: none; text-align: center;">Go</a></div>
+                <div class="card"><h3 class="card-title">New Training</h3><p style="color: #666; margin-bottom: 1rem;">Create a new model with your dataset.</p><a href="admin_training.html" class="btn btn-primary" style="text-decoration: none; text-align: center;">Go</a></div>
+                <div class="card"><h3 class="card-title">Datasets</h3><p style="color: #666; margin-bottom: 1rem;">Browse and manage all generated datasets.</p><a href="datasets.html" class="btn btn-outline" style="text-decoration: none; text-align: center;">View</a></div>
+                <div class="card"><h3 class="card-title">Model Comparison</h3><p style="color: #666; margin-bottom: 1rem;">Benchmark and compare multiple models side by side.</p><a href="model_comparison.html" class="btn btn-primary" style="text-decoration: none; text-align: center;">Compare</a></div>
+                <div class="card"><h3 class="card-title">Manage Users</h3><p style="color: #666; margin-bottom: 1rem;">View and manage all platform users.</p><a href="admin_users.html" class="btn btn-primary" style="text-decoration: none; text-align: center;">Go</a></div>
+            </div>
+        </main>
+    </div>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     <script src="../js/services/auth.js"></script>
     <script src="../js/services/history.js"></script>
     <script src="../js/services/data.js"></script>
@@ -124,6 +151,7 @@
             }
         })();
 
+<<<<<<< HEAD
         function todayStr() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
 
         function fmtDate(d) {
@@ -157,6 +185,8 @@
 
         function _t(k) { return typeof I18nService !== 'undefined' && I18nService.t ? I18nService.t(k) : k; }
 
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         document.addEventListener('DOMContentLoaded', function() {
             try {
                 var user = AuthService.getCurrentUser();
@@ -165,6 +195,7 @@
 
             try { App.setupSidebar(); } catch (e) {}
             try { App.setupUserPanel(); } catch (e) {}
+<<<<<<< HEAD
             try { App.setupLanguageSwitcher(); } catch (e) {}
 
             var users = [];
@@ -304,5 +335,30 @@
         });
     </script>
 <script>if (typeof I18nService !== 'undefined') I18nService.translatePage();</script>
+=======
+
+            var users = [], stats = { total: 0, total_rows: 0 }, totalPreds = 0, modelStats = { total: 0, trained: 0 };
+            try { users = AuthService.getUsers() || []; } catch (e) { users = []; }
+            try { stats = DataService.getGenerationStats() || { total: 0, total_rows: 0 }; } catch (e) {}
+            try { modelStats = ModelService.getStats() || { total: 0, trained: 0 }; } catch (e) {}
+
+            if (users.length > 0) {
+                try {
+                    totalPreds = users.reduce(function(s, u) {
+                        try { return s + (HistoryService.getStats(u.id).totalPredictions || 0); } catch (e) { return s; }
+                    }, 0);
+                } catch (e) {}
+            }
+
+            document.getElementById('kpi-grid').innerHTML =
+                '<div class="kpi-card"><div class="kpi-value">' + (users.length || 0) + '</div><div class="kpi-label">Users</div></div>' +
+                '<div class="kpi-card"><div class="kpi-value">' + (totalPreds || 0) + '</div><div class="kpi-label">Predictions</div></div>' +
+                '<div class="kpi-card"><div class="kpi-value">' + (stats.total || 0) + '</div><div class="kpi-label">Datasets</div></div>' +
+                '<div class="kpi-card"><div class="kpi-value">' + ((stats.total_rows || 0).toLocaleString()) + '</div><div class="kpi-label">Total Rows</div></div>' +
+                '<div class="kpi-card" style="border-left-color: #FF9800;"><div class="kpi-value">' + modelStats.total + '</div><div class="kpi-label">Models</div></div>' +
+                '<div class="kpi-card" style="border-left-color: #4CAF50;"><div class="kpi-value">' + modelStats.trained + '</div><div class="kpi-label">Trained</div></div>';
+        });
+    </script>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 </body>
 </html>

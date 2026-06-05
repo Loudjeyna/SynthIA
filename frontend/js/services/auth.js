@@ -27,7 +27,11 @@ const AuthService = (function() {
         initUsers();
         const users = getUsers();
         if (users.find(u => u.username === username || u.email === email)) {
+<<<<<<< HEAD
             return { success: false, message: (typeof I18nService !== 'undefined' ? I18nService.t('login.exists') : 'Username or email already exists') };
+=======
+            return { success: false, message: 'Username or email already exists' };
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         }
         const newUser = {
             id: users.length + 1, username, email, password, role,
@@ -43,8 +47,13 @@ const AuthService = (function() {
         initUsers();
         const users = getUsers();
         const user = users.find(u => u.username === username && u.password === password);
+<<<<<<< HEAD
         if (!user) return { success: false, message: (typeof I18nService !== 'undefined' ? I18nService.t('login.invalid') : 'Invalid credentials') };
         if (!user.isActive) return { success: false, message: (typeof I18nService !== 'undefined' ? I18nService.t('login.disabled') : 'Account is disabled') };
+=======
+        if (!user) return { success: false, message: 'Invalid credentials' };
+        if (!user.isActive) return { success: false, message: 'Account is disabled' };
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
         return { success: true, user };
     }
@@ -65,8 +74,12 @@ const AuthService = (function() {
 
     function canAttempt() {
         const user = getCurrentUser();
+<<<<<<< HEAD
         if (!user) return false;
         if (user.role === 'admin' || user.plan === 'premium') return true;
+=======
+        if (!user || user.plan === 'premium') return true;
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         const now = new Date();
         const lastReset = new Date(user.lastReset);
         if (now.getDate() !== lastReset.getDate()) {
@@ -88,7 +101,11 @@ const AuthService = (function() {
     function getRemainingAttempts() {
         const user = getCurrentUser();
         if (!user) return 0;
+<<<<<<< HEAD
         if (user.role === 'admin' || user.plan === 'premium') return Infinity;
+=======
+        if (user.plan === 'premium') return Infinity;
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         if (user.plan === 'pro') return Math.max(0, 50 - (user.attempts || 0));
         const now = new Date();
         const lastReset = new Date(user.lastReset);

@@ -456,10 +456,20 @@ const DataService = (function() {
         entry.timestamp = Date.now();
         entry.date = new Date().toISOString();
         entry.status = 'completed';
+<<<<<<< HEAD
         // Store full dataset in memory, only preview (first 50) in localStorage
         if (entry.preview && entry.preview.data) {
             _fullDatasetCache[entry.id] = entry.preview.data;
             entry.preview._fullDataAvailable = true;
+=======
+        // Store full dataset in memory, only keep a small preview in localStorage.
+        if (entry.preview && entry.preview.data) {
+            _fullDatasetCache[entry.id] = entry.preview.data;
+            entry.preview._fullDataAvailable = true;
+            if (entry.preview.data.length > 50) {
+                entry.preview.data = entry.preview.data.slice(0, 50);
+            }
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         }
         generations.unshift(entry);
         saveGenerations(generations);
@@ -647,6 +657,7 @@ const DataService = (function() {
             fileUrl: fileUrl
         });
 
+<<<<<<< HEAD
         _uploadToCloudinary(data, headers, model.name, verNum).then(function(cloudUrl) {
             if (cloudUrl) {
                 entry.cloudinaryUrl = cloudUrl;
@@ -659,11 +670,14 @@ const DataService = (function() {
             }
         });
 
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         return entry;
     }
 
     var _cloudUrls = {};
 
+<<<<<<< HEAD
     var CLOUDINARY_CONFIG = {
         cloudName: 'dvwsxexad',
         uploadPreset: 'synthai_uploads',
@@ -697,6 +711,14 @@ const DataService = (function() {
     function _createCloudUrl(data, headers, modelName, version) {
         var id = Date.now() + '_' + Math.random().toString(36).substr(2, 6);
         var blob = _csvBlob(data, headers);
+=======
+    function _createCloudUrl(data, headers, modelName, version) {
+        var id = Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+        var csv = [headers.join(','), ...data.map(function(row) {
+            return headers.map(function(h) { return '"' + (row[h] || '') + '"'; }).join(',');
+        })].join('\n');
+        var blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8' });
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         var url = URL.createObjectURL(blob);
         _cloudUrls[id] = url;
         return 'synthai://cloud/' + id;
@@ -725,6 +747,7 @@ const DataService = (function() {
         var gen = getGenerationById(id);
         if (!gen) return false;
 
+<<<<<<< HEAD
         // Try Cloudinary URL first
         var url = null;
         if (gen.cloudinaryUrl) {
@@ -733,6 +756,11 @@ const DataService = (function() {
 
         // Fallback to local cloud URL
         if (!url && gen.fileUrl) {
+=======
+        // Try cloud URL first
+        var url = null;
+        if (gen.fileUrl) {
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             url = resolveCloudUrl(gen.fileUrl);
         }
 
@@ -766,6 +794,7 @@ const DataService = (function() {
         return data.slice(0, count);
     }
 
+<<<<<<< HEAD
     // ===================================================================
     // DATA AUGMENTATION
     // ===================================================================
@@ -948,6 +977,8 @@ const DataService = (function() {
         return true;
     }
 
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     return {
         getGenerations, addGeneration, getGenerationStats, getDatasetConfig,
         getDatasetTypes, getAvailableLevels, generatePreview, generateStatistics,
@@ -956,12 +987,17 @@ const DataService = (function() {
         getCropNames: function() { return CROP_NAMES; },
         getSoilTextures: function() { return SOIL_TEXTURES.map(function(t) { return t.name; }); },
         getWeatherPatterns: function() { return WEATHER_PATTERNS.map(function(p) { return p.zone; }); },
+<<<<<<< HEAD
+=======
+        // New model-based generation + cloud storage
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         getAvailableModels: getAvailableModels,
         generateFromModel: generateFromModel,
         resolveCloudUrl: resolveCloudUrl,
         revokeCloudUrl: revokeCloudUrl,
         exportGeneration: exportGeneration,
         getGenerationPreviewRows: getGenerationPreviewRows,
+<<<<<<< HEAD
         generateFullData: generateFullData,
         // Augmentation
         getAugmentations: getAugmentations,
@@ -971,5 +1007,8 @@ const DataService = (function() {
         parseDataFromCSV: parseDataFromCSV,
         augmentDataset: augmentDataset,
         exportAugmentation: exportAugmentation
+=======
+        generateFullData: generateFullData
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     };
 })();

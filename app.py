@@ -1,7 +1,11 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+<<<<<<< HEAD
 import plotly.express as px
+=======
+import plotly.express as px  # type: ignore
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 import plotly.graph_objects as go
 from pathlib import Path
 import sys

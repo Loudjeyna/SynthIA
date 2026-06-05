@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title data-i18n="evaluation.title">SynthAI - Data Evaluation & Comparison</title>
+=======
+    <title>SynthAI - Data Evaluation & Comparison</title>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     <link rel="stylesheet" href="../styles/global.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <style>
@@ -91,6 +95,7 @@
 <body>
     <div class="app-container">
         <aside class="sidebar">
+<<<<<<< HEAD
             <div class="sidebar-brand"><img src="logo.png" alt="SynthAI" class="sidebar-logo"><h1 data-i18n="app.name">SynthAI</h1><p data-i18n="app.tagline">Smart Agricultural Intelligence</p></div>
             <div id="user-panel"></div>
             <nav class="sidebar-nav" id="sidebar-nav"></nav>
@@ -102,11 +107,28 @@
             <div class="page-header">
                 <h2 data-i18n="datasets.evaluate">Data Evaluation & Comparison</h2>
                 <p id="page-subtitle" data-i18n="evaluation.loading">Loading generation data...</p>
+=======
+            <div class="sidebar-brand"><h1>SynthAI</h1><p>Smart Agricultural Intelligence</p></div>
+            <div id="user-panel"></div>
+            <nav class="sidebar-nav" id="sidebar-nav"></nav>
+            <div style="padding: 1rem; margin-top: 2rem;"><button id="logout-btn" class="btn btn-outline" style="width: 100%; border-color: rgba(255,255,255,0.2); color: white;">Logout</button></div>
+        </aside>
+
+        <main class="main-content">
+            <a class="back-link" id="back-link" href="datasets.html">&larr; Back to Datasets</a>
+            <div class="page-header">
+                <h2>Data Evaluation & Comparison</h2>
+                <p id="page-subtitle">Loading generation data...</p>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             </div>
             <div id="status-msg"></div>
 
             <div id="eval-content">
+<<<<<<< HEAD
                 <div class="loading"><div class="spinner"></div><p data-i18n="common.loading">Loading and comparing datasets...</p></div>
+=======
+                <div class="loading"><div class="spinner"></div><p>Loading and comparing datasets...</p></div>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             </div>
         </main>
     </div>
@@ -115,7 +137,11 @@
     <div class="preview-modal" id="preview-modal">
         <div class="preview-modal-content">
             <span class="close-modal" id="close-modal">&times;</span>
+<<<<<<< HEAD
             <h3 data-i18n="augment.data_preview">Data Preview</h3>
+=======
+            <h3>Data Preview</h3>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             <div id="preview-table-container" style="overflow-x:auto;">
                 <table class="preview-table" id="preview-table">
                     <thead id="preview-thead"></thead>
@@ -125,7 +151,11 @@
             <p id="preview-footer" style="font-size:0.78rem;color:#999;margin-top:0.75rem;"></p>
         </div>
     </div>
+<<<<<<< HEAD
     <script src="../js/services/i18n.js"></script>
+=======
+
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     <script src="../js/services/auth.js"></script>
     <script src="../js/services/model.js"></script>
     <script src="../js/services/data.js"></script>
@@ -143,14 +173,21 @@
         })();
 
         document.addEventListener('DOMContentLoaded', function() {
+<<<<<<< HEAD
             function _t(k) { return typeof I18nService !== 'undefined' && I18nService.t ? I18nService.t(k) : k; }
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             try {
                 var user = AuthService.getCurrentUser();
                 if (!user) { window.location.href = '/pages/login.html'; return; }
             } catch (e) { window.location.href = '/pages/login.html'; return; }
 
+<<<<<<< HEAD
             try { App.setupSidebar();
 try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
+=======
+            try { App.setupSidebar(); } catch (e) {}
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             try { App.setupUserPanel(); } catch (e) {}
 
             var chartInstances = {};
@@ -162,8 +199,13 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
 
             var genId = parseInt(getUrlParam('id'));
             if (!genId) {
+<<<<<<< HEAD
                 document.getElementById('eval-content').innerHTML = '<div class="error-box">' + _t('evaluation.no_dataset_id') + ' <a href="datasets.html" style="color:#1565C0;">' + _t('evaluation.go_to_datasets') + '</a></div>';
                 document.getElementById('page-subtitle').textContent = _t('evaluation.loading');
+=======
+                document.getElementById('eval-content').innerHTML = '<div class="error-box">No dataset ID provided. <a href="datasets.html" style="color:#1565C0;">Go to Datasets</a></div>';
+                document.getElementById('page-subtitle').textContent = 'Error: missing dataset ID';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 return;
             }
 
@@ -177,23 +219,40 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
             function loadEvaluation() {
                 var gen = DataService.getGenerationById(genId);
                 if (!gen) {
+<<<<<<< HEAD
                     document.getElementById('eval-content').innerHTML = '<div class="error-box">' + _t('evaluation.dataset_not_found') + ' (ID: ' + genId + ').</div>';
                     document.getElementById('page-subtitle').textContent = _t('evaluation.dataset_not_found');
+=======
+                    document.getElementById('eval-content').innerHTML = '<div class="error-box">Dataset not found (ID: ' + genId + '). It may have been deleted.</div>';
+                    document.getElementById('page-subtitle').textContent = 'Dataset not found';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     return;
                 }
 
                 var modelName = gen.modelName || 'Standalone';
                 var modelVer = gen.modelVersion || '-';
+<<<<<<< HEAD
                 var level = gen.level || _t('size.medium');
                 var rows = gen.rows || 0;
 
                 document.getElementById('page-subtitle').innerHTML =
                     _t('evaluation.comparing') + ' <strong>' + modelName + '</strong> (v' + modelVer + ') — ' + level + ' (' + rows.toLocaleString() + ' ' + _t('pagination.rows') + ')';
+=======
+                var level = gen.level || 'Medium';
+                var rows = gen.rows || 0;
+
+                document.getElementById('page-subtitle').innerHTML =
+                    'Comparing <strong>' + modelName + '</strong> (v' + modelVer + ') — ' + level + ' (' + rows.toLocaleString() + ' rows)';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 
                 // Load synthetic data
                 var synData = DataService.getFullDataset(genId);
                 if (!synData || synData.length === 0) {
+<<<<<<< HEAD
                     document.getElementById('eval-content').innerHTML = '<div class="error-box">' + _t('evaluation.data_not_available') + '</div>';
+=======
+                    document.getElementById('eval-content').innerHTML = '<div class="error-box">Synthetic data not available for this generation. The in-memory cache may have been cleared.</div>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     return;
                 }
 
@@ -257,10 +316,17 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
 
                 // --- Section 1: Data Comparison Table ---
                 html += '<div class="card" style="margin-bottom:1.5rem;">';
+<<<<<<< HEAD
                 html += '<h3 class="section-title"><span class="ico blue"></span>' + _t('evaluation.statistical_comparison') + '</h3>';
                 html += '<div style="overflow-x:auto;">';
                 html += '<table class="cmp-table">';
                 html += '<thead><tr><th>' + _t('evaluation.feature') + '</th><th>' + _t('evaluation.real_mean') + '</th><th>' + _t('evaluation.synth_mean') + '</th><th>' + _t('evaluation.diff') + '</th><th>' + _t('evaluation.real_std') + '</th><th>' + _t('evaluation.synth_std') + '</th><th>' + _t('evaluation.real_min') + '</th><th>' + _t('evaluation.synth_min') + '</th><th>' + _t('evaluation.real_max') + '</th><th>' + _t('evaluation.synth_max') + '</th></tr></thead>';
+=======
+                html += '<h3 class="section-title"><span class="ico blue"></span>Statistical Comparison</h3>';
+                html += '<div style="overflow-x:auto;">';
+                html += '<table class="cmp-table">';
+                html += '<thead><tr><th>Feature</th><th>Real Mean</th><th>Synth Mean</th><th>Diff</th><th>Real Std</th><th>Synth Std</th><th>Real Min</th><th>Synth Min</th><th>Real Max</th><th>Synth Max</th></tr></thead>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 html += '<tbody>';
 
                 commonNum.forEach(function(col) {
@@ -297,35 +363,58 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                 });
 
                 html += '</tbody></table></div>';
+<<<<<<< HEAD
                 if (commonNum.length === 0) html += '<p style="color:#999;padding:0.5rem;">' + _t('evaluation.no_common_features') + '</p>';
+=======
+                if (commonNum.length === 0) html += '<p style="color:#999;padding:0.5rem;">No common numeric features to compare.</p>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 html += '</div>';
 
                 // --- Section 2: Visualization ---
                 html += '<div class="card" style="margin-bottom:1.5rem;">';
+<<<<<<< HEAD
                 html += '<h3 class="section-title"><span class="ico blue"></span>' + _t('evaluation.distribution_comparison') + '</h3>';
+=======
+                html += '<h3 class="section-title"><span class="ico blue"></span>Distribution Comparison</h3>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 html += '<div class="chart-grid" id="dist-charts"></div>';
                 html += '</div>';
 
                 // Correlation heatmap
                 html += '<div class="card" style="margin-bottom:1.5rem;">';
+<<<<<<< HEAD
                 html += '<h3 class="section-title"><span class="ico blue"></span>' + _t('evaluation.correlation_comparison') + '</h3>';
                 html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">';
                 html += '<div><h4 style="font-size:0.9rem;color:#1565C0;margin-bottom:0.5rem;">' + _t('evaluation.real_data') + '</h4><div class="heatmap-wrapper" id="heatmap-real"></div></div>';
                 html += '<div><h4 style="font-size:0.9rem;color:#E65100;margin-bottom:0.5rem;">' + _t('evaluation.synthetic_data') + '</h4><div class="heatmap-wrapper" id="heatmap-synth"></div></div>';
+=======
+                html += '<h3 class="section-title"><span class="ico blue"></span>Correlation Comparison</h3>';
+                html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">';
+                html += '<div><h4 style="font-size:0.9rem;color:#1565C0;margin-bottom:0.5rem;">Real Data</h4><div class="heatmap-wrapper" id="heatmap-real"></div></div>';
+                html += '<div><h4 style="font-size:0.9rem;color:#E65100;margin-bottom:0.5rem;">Synthetic Data</h4><div class="heatmap-wrapper" id="heatmap-synth"></div></div>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 html += '</div>';
                 html += '</div>';
 
                 // Categorical comparison
                 if (commonCat.length > 0) {
                     html += '<div class="card" style="margin-bottom:1.5rem;">';
+<<<<<<< HEAD
                     html += '<h3 class="section-title"><span class="ico blue"></span>' + _t('evaluation.categorical_comparison') + '</h3>';
+=======
+                    html += '<h3 class="section-title"><span class="ico blue"></span>Categorical Comparison</h3>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     html += '<div class="cat-grid" id="cat-charts"></div>';
                     html += '</div>';
                 }
 
                 // --- Section 3: Quality Score ---
                 html += '<div class="card" style="margin-bottom:1.5rem;">';
+<<<<<<< HEAD
                 html += '<h3 class="section-title"><span class="ico blue"></span>' + _t('evaluation.data_quality_score') + '</h3>';
+=======
+                html += '<h3 class="section-title"><span class="ico blue"></span>Data Quality Score</h3>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 html += '<div class="qs-container"><div class="qs-gauge" id="qs-gauge"></div><div class="qs-breakdown" id="qs-breakdown"></div></div>';
                 html += '</div>';
 
@@ -394,8 +483,13 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                         data: {
                             labels: labels,
                             datasets: [
+<<<<<<< HEAD
                                 { label: _t('evaluation.chart_real'), data: rCounts, backgroundColor: 'rgba(21,101,192,0.5)', borderColor: '#1565C0', borderWidth: 1 },
                                 { label: _t('evaluation.chart_synthetic'), data: sCounts, backgroundColor: 'rgba(230,81,0,0.5)', borderColor: '#E65100', borderWidth: 1 }
+=======
+                                { label: 'Real', data: rCounts, backgroundColor: 'rgba(21,101,192,0.5)', borderColor: '#1565C0', borderWidth: 1 },
+                                { label: 'Synthetic', data: sCounts, backgroundColor: 'rgba(230,81,0,0.5)', borderColor: '#E65100', borderWidth: 1 }
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                             ]
                         },
                         options: {
@@ -404,7 +498,11 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                             plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 8, font: { size: 10 } } } },
                             scales: {
                                 x: { ticks: { font: { size: 8 }, maxRotation: 45 }, title: { display: true, text: col, font: { size: 10 } } },
+<<<<<<< HEAD
                                 y: { beginAtZero: true, title: { display: true, text: _t('evaluation.chart_count'), font: { size: 10 } } }
+=======
+                                y: { beginAtZero: true, title: { display: true, text: 'Count', font: { size: 10 } } }
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                             }
                         }
                     });
@@ -418,8 +516,13 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                 var realEl = document.getElementById('heatmap-real');
                 var synthEl = document.getElementById('heatmap-synth');
                 if (!realEl || !synthEl || cols.length < 2) {
+<<<<<<< HEAD
                     if (realEl) realEl.innerHTML = '<p style="color:#999;font-size:0.82rem;">' + _t('evaluation.need_2_columns') + '</p>';
                     if (synthEl) synthEl.innerHTML = '<p style="color:#999;font-size:0.82rem;">' + _t('evaluation.need_2_columns') + '</p>';
+=======
+                    if (realEl) realEl.innerHTML = '<p style="color:#999;font-size:0.82rem;">Need at least 2 numeric columns.</p>';
+                    if (synthEl) synthEl.innerHTML = '<p style="color:#999;font-size:0.82rem;">Need at least 2 numeric columns.</p>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     return;
                 }
 
@@ -531,8 +634,13 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                         data: {
                             labels: labels,
                             datasets: [
+<<<<<<< HEAD
                                 { label: _t('evaluation.chart_real'), data: rVals, backgroundColor: 'rgba(21,101,192,0.5)', borderColor: '#1565C0', borderWidth: 1 },
                                 { label: _t('evaluation.chart_synthetic'), data: sVals, backgroundColor: 'rgba(230,81,0,0.5)', borderColor: '#E65100', borderWidth: 1 }
+=======
+                                { label: 'Real', data: rVals, backgroundColor: 'rgba(21,101,192,0.5)', borderColor: '#1565C0', borderWidth: 1 },
+                                { label: 'Synthetic', data: sVals, backgroundColor: 'rgba(230,81,0,0.5)', borderColor: '#E65100', borderWidth: 1 }
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                             ]
                         },
                         options: {
@@ -541,7 +649,11 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                             plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 8, font: { size: 10 } } } },
                             scales: {
                                 x: { ticks: { font: { size: 9 }, maxRotation: 45 } },
+<<<<<<< HEAD
                                 y: { beginAtZero: true, title: { display: true, text: _t('evaluation.chart_count'), font: { size: 10 } } }
+=======
+                                y: { beginAtZero: true, title: { display: true, text: 'Count', font: { size: 10 } } }
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                             }
                         }
                     });
@@ -634,6 +746,7 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
 
                 // Gauge display
                 var statusText, statusClass;
+<<<<<<< HEAD
                 if (overall >= 0.8) { statusText = _t('status.excellent'); statusClass = 'badge-green'; }
                 else if (overall >= 0.5) { statusText = _t('status.good'); statusClass = 'badge-orange'; }
                 else { statusText = _t('status.needs_improvement'); statusClass = 'badge-red'; }
@@ -641,6 +754,15 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                 gaugeEl.innerHTML =
                     '<div class="score-num" style="color:' + (overall >= 0.8 ? '#2E7D32' : overall >= 0.5 ? '#E65100' : '#C62828') + ';">' + (overall * 100).toFixed(1) + '%</div>' +
                     '<div class="score-label">' + _t('evaluation.data_quality_score') + '</div>' +
+=======
+                if (overall >= 0.8) { statusText = 'Excellent'; statusClass = 'badge-green'; }
+                else if (overall >= 0.5) { statusText = 'Good'; statusClass = 'badge-orange'; }
+                else { statusText = 'Needs Improvement'; statusClass = 'badge-red'; }
+
+                gaugeEl.innerHTML =
+                    '<div class="score-num" style="color:' + (overall >= 0.8 ? '#2E7D32' : overall >= 0.5 ? '#E65100' : '#C62828') + ';">' + (overall * 100).toFixed(1) + '%</div>' +
+                    '<div class="score-label">Data Quality Score</div>' +
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     '<div class="score-status ' + statusClass + '">' + statusText + '</div>';
 
                 // Breakdown
@@ -649,10 +771,17 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                     return '<div class="qs-item"><span class="qs-label">' + label + '</span><div class="qs-bar-wrap"><div class="qs-bar-fill" style="width:' + pct + '%;background:' + color + ';"></div></div><span class="qs-val">' + pct + '%</span></div>';
                 }
                 breakdownEl.innerHTML =
+<<<<<<< HEAD
                     breakdownItem(_t('evaluation.statistical_similarity'), statSim, '#1565C0') +
                     breakdownItem(_t('evaluation.distribution_similarity'), distSim, '#E65100') +
                     breakdownItem(_t('evaluation.correlation_similarity'), corrSim, '#2E7D32') +
                     '<div class="info-note">' + _t('evaluation.quality_note') + '</div>';
+=======
+                    breakdownItem('Statistical Similarity (40%)', statSim, '#1565C0') +
+                    breakdownItem('Distribution Similarity (35%)', distSim, '#E65100') +
+                    breakdownItem('Correlation Similarity (25%)', corrSim, '#2E7D32') +
+                    '<div class="info-note"><strong>Note:</strong> Quality is computed entirely from actual data comparison — no hardcoded values. Score ranges: 80-100% Excellent, 50-79% Good, below 50% Needs Improvement.</div>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             }
 
             // Preview modal handlers
@@ -666,6 +795,9 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
             loadEvaluation();
         });
     </script>
+<<<<<<< HEAD
 <script>if (typeof I18nService !== 'undefined') I18nService.translatePage();</script>
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 </body>
 </html>

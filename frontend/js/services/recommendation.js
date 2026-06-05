@@ -27,6 +27,7 @@ const RecommendationService = (function() {
     };
 
     var cropNames = {
+<<<<<<< HEAD
         ble_dur: "Durum Wheat",
         orge: "Barley",
         dattes: "Dates",
@@ -49,6 +50,30 @@ const RecommendationService = (function() {
         louz: "Almonds",
         maize: "Maize",
         tournesol: "Sunflower"
+=======
+        ble_dur: "Bl\u00e9 dur",
+        orge: "Orge",
+        dattes: "Dattes",
+        zitoun: "Olives",
+        oranges: "Oranges",
+        aneb: "Raisin",
+        karmous: "Figues",
+        rouman: "Grenade",
+        homos: "Pois chiches",
+        adas: "Lentilles",
+        batata: "Pomme de terre",
+        tomatish: "Tomates",
+        bsla: "Oignons",
+        dellaa: "Past\u00e8que",
+        bettikh: "Melon",
+        felfel: "Poivrons",
+        zroudiya: "Carottes",
+        jelbana: "Petits pois",
+        michmich: "Abricots",
+        louz: "Amandes",
+        maize: "Ma\u00efs",
+        tournesol: "Tournesol"
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     };
 
     function getCrops() {

@@ -36,6 +36,7 @@
     <div class="auth-container">
         <div class="auth-card">
             <div class="logo">
+<<<<<<< HEAD
                 <img src="logo.png" alt="SynthAI" style="width:64px;height:64px;border-radius:12px;">
                 <h2>SynthAI</h2>
                 <p class="subtitle" data-i18n="app.tagline">Smart Agricultural Intelligence Platform</p>
@@ -48,11 +49,24 @@
             <div class="tabs">
                 <div class="tab active" data-tab="login" data-i18n="login.btn">Sign In</div>
                 <div class="tab" data-tab="register" data-i18n="login.register">Register</div>
+=======
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <h2>SynthAI</h2>
+                <p class="subtitle">Smart Agricultural Intelligence Platform</p>
+            </div>
+
+            <div id="status-msg" class="status-message"></div>
+
+            <div class="tabs">
+                <div class="tab active" data-tab="login">Sign In</div>
+                <div class="tab" data-tab="register">Register</div>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             </div>
 
             <div class="tab-content active" id="tab-login">
                 <form id="login-form">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="login-username" data-i18n="login.username">Username</label>
                         <input type="text" id="login-username" class="form-control" required>
                     </div>
@@ -61,12 +75,23 @@
                         <input type="password" id="login-password" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-primary" data-i18n="login.btn">Sign In</button>
+=======
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 </form>
             </div>
 
             <div class="tab-content" id="tab-register">
                 <form id="register-form">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="reg-username" data-i18n="login.username">Username</label>
                         <input type="text" id="reg-username" class="form-control" required>
                     </div>
@@ -127,6 +152,38 @@
             }
         })();
 
+=======
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-role">Role</label>
+                        <select id="reg-role" class="form-control">
+                            <option value="farmer">Farmer</option>
+                            <option value="company">Company</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+
+            <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f5f0; border-radius: 8px; font-size: 0.8rem; color: #555;">
+                <strong>Default Admin:</strong> admin / admin123
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/services/auth.js"></script>
+    <script>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
@@ -137,8 +194,11 @@
             });
         });
 
+<<<<<<< HEAD
         var _t = function(k) { return typeof I18nService !== 'undefined' && I18nService.t ? I18nService.t(k) : k; };
 
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         // Login
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -148,7 +208,11 @@
             const msg = document.getElementById('status-msg');
             if (result.success) {
                 msg.className = 'status-message status-success';
+<<<<<<< HEAD
                 msg.textContent = _t('common.loading');
+=======
+                msg.textContent = 'Login successful!';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 setTimeout(function() {
                     var routes = { admin: '/pages/admin_home.html', company: '/pages/company_home.html', farmer: '/pages/farmer_home.html' };
                     window.location.href = routes[result.user.role] || '/pages/farmer_home.html';
@@ -170,7 +234,11 @@
             const msg = document.getElementById('status-msg');
             if (result.success) {
                 msg.className = 'status-message status-success';
+<<<<<<< HEAD
                 msg.textContent = _t('login.no_account');
+=======
+                msg.textContent = 'Registration successful! You can now sign in.';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 document.getElementById('register-form').reset();
             } else {
                 msg.className = 'status-message status-error';
@@ -184,11 +252,14 @@
             var _routes = { admin: '/pages/admin_home.html', company: '/pages/company_home.html', farmer: '/pages/farmer_home.html' };
             window.location.href = _routes[_user.role] || '/pages/farmer_home.html';
         }
+<<<<<<< HEAD
 
         // Translate page
         if (typeof I18nService !== 'undefined') {
             I18nService.translatePage();
         }
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     </script>
 </body>
 </html>

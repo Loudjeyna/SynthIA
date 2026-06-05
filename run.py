@@ -1,38 +1,17 @@
-import http.server, socketserver, os, sys, socket
+import http.server
+import socketserver
+import os
+from pathlib import Path
 
-os.chdir(r'C:\Users\loudj\OneDrive\Documents\GitHub\Synth_AI\frontend')
+BASE_DIR = Path(__file__).resolve().parent
+FRONTEND_DIR = BASE_DIR / "frontend"
 
-def find_free_port(start=8080, end=8090):
-    for port in range(start, end):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            try:
-                s.bind(('127.0.0.1', port))
-                return port
-            except OSError:
-                continue
-    return None
+os.chdir(FRONTEND_DIR)
 
-port = find_free_port()
-if port is None:
-    print('ERROR: No free port available in range 8080-8089.')
-    sys.exit(1)
+PORT = int(os.environ.get("PORT", 8080))
 
-server = http.server.ThreadingHTTPServer(
-    ('127.0.0.1', port),
-    http.server.SimpleHTTPRequestHandler
-)
+Handler = http.server.SimpleHTTPRequestHandler
 
-print('=' * 50)
-print('  SynthAI Server Running!')
-print('=' * 50)
-print(f'  Open: http://127.0.0.1:{port}/pages/first.html')
-print('  Login: admin / admin123')
-print('  Ctrl+C to stop.')
-print('=' * 50)
-sys.stdout.flush()
-
-try:
-    server.serve_forever()
-except KeyboardInterrupt:
-    server.shutdown()
-    print('Server stopped.')
+with socketserver.TCPServer(("0.0.0.0", PORT), Handler) as httpd:
+    print(f"Serving on port {PORT}")
+    httpd.serve_forever()

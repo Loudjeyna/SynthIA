@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title data-i18n="datasets.title">SynthAI - Generated Data Dashboard</title>
+=======
+    <title>SynthAI - Generated Data Dashboard</title>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     <link rel="stylesheet" href="../styles/global.css">
     <style>
         .dashboard-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
@@ -51,16 +55,28 @@
 <body>
     <div class="app-container">
         <aside class="sidebar">
+<<<<<<< HEAD
             <div class="sidebar-brand"><img src="logo.png" alt="SynthAI" class="sidebar-logo"><h1 data-i18n="app.name">SynthAI</h1><p data-i18n="app.tagline">Smart Agricultural Intelligence</p></div>
             <div id="user-panel"></div>
             <nav class="sidebar-nav" id="sidebar-nav"></nav>
             <div style="padding: 1rem; margin-top: 2rem;"><button id="logout-btn" class="btn btn-outline" style="width: 100%; border-color: rgba(255,255,255,0.2); color: white;" data-i18n="logout">Logout</button></div>
+=======
+            <div class="sidebar-brand"><h1>SynthAI</h1><p>Smart Agricultural Intelligence</p></div>
+            <div id="user-panel"></div>
+            <nav class="sidebar-nav" id="sidebar-nav"></nav>
+            <div style="padding: 1rem; margin-top: 2rem;"><button id="logout-btn" class="btn btn-outline" style="width: 100%; border-color: rgba(255,255,255,0.2); color: white;">Logout</button></div>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
         </aside>
 
         <main class="main-content">
             <div class="page-header">
+<<<<<<< HEAD
                 <h2 data-i18n="datasets.title">Generated Data Dashboard</h2>
                 <p data-i18n="datasets.subtitle">Browse, preview, and download all synthetic datasets generated from your models</p>
+=======
+                <h2>Generated Data Dashboard</h2>
+                <p>Browse, preview, and download all synthetic datasets generated from your models</p>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             </div>
 
             <div class="dashboard-stats" id="dashboard-stats"></div>
@@ -68,18 +84,31 @@
 
             <div class="card">
                 <div class="filter-bar">
+<<<<<<< HEAD
                     <input type="text" class="search-input" id="search-input" placeholder="Search by model name..." data-i18n="datasets.search">
                     <select id="size-filter">
                         <option value="all" data-i18n="datasets.all_sizes">All Sizes</option>
+=======
+                    <input type="text" class="search-input" id="search-input" placeholder="Search by model name...">
+                    <select id="size-filter">
+                        <option value="all">All Sizes</option>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                         <option value="Medium">Medium</option>
                         <option value="Large">Large</option>
                         <option value="Big Data">Big Data</option>
                     </select>
                     <select id="sort-select">
+<<<<<<< HEAD
                         <option value="newest" data-i18n="datasets.newest">Newest First</option>
                         <option value="oldest" data-i18n="datasets.oldest">Oldest First</option>
                         <option value="rows-desc" data-i18n="datasets.most_rows">Most Rows</option>
                         <option value="rows-asc" data-i18n="datasets.fewest_rows">Fewest Rows</option>
+=======
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="rows-desc">Most Rows</option>
+                        <option value="rows-asc">Fewest Rows</option>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     </select>
                 </div>
 
@@ -87,6 +116,7 @@
                     <table class="gen-table">
                         <thead>
                             <tr>
+<<<<<<< HEAD
                                 <th data-i18n="table.model_name">Model Name</th>
                                 <th>Version</th>
                                 <th data-i18n="generate.dataset_size">Size</th>
@@ -94,6 +124,16 @@
                                 <th data-i18n="table.created">Date</th>
                                 <th>Time</th>
                                 <th data-i18n="table.actions">Actions</th>
+=======
+                                <th>Model Name</th>
+                                <th>Version</th>
+                                <th>Size</th>
+                                <th>Rows</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>File URL</th>
+                                <th>Actions</th>
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                             </tr>
                         </thead>
                         <tbody id="datasets-tbody"></tbody>
@@ -119,7 +159,11 @@
             <p id="preview-footer" style="font-size:0.78rem;color:#999;margin-top:0.75rem;"></p>
         </div>
     </div>
+<<<<<<< HEAD
     <script src="../js/services/i18n.js"></script>
+=======
+
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
     <script src="../js/services/auth.js"></script>
     <script src="../js/services/model.js"></script>
     <script src="../js/services/data.js"></script>
@@ -142,18 +186,25 @@
                 if (!user) { window.location.href = '/pages/login.html'; return; }
             } catch (e) { window.location.href = '/pages/login.html'; return; }
 
+<<<<<<< HEAD
             try { App.setupSidebar();
 try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
             try { App.setupUserPanel(); } catch (e) {}
 
             function _t(k) { return typeof I18nService !== 'undefined' && I18nService.t ? I18nService.t(k) : k; }
 
+=======
+            try { App.setupSidebar(); } catch (e) {}
+            try { App.setupUserPanel(); } catch (e) {}
+
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             var currentPage = 1;
             var perPage = 10;
             var allDatasets = [];
             var filteredDatasets = [];
 
             function loadData() {
+<<<<<<< HEAD
                 var useApi = typeof ApiService !== 'undefined' && ApiService.isAvailable();
                 if (useApi) {
                     ApiService.getDatasets().then(function(apiDatasets) {
@@ -188,15 +239,29 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
             }
 
             function renderDashboard() {
+=======
+                try {
+                    allDatasets = DataService.getGenerations() || [];
+                } catch (e) { allDatasets = []; }
+
+                // Compute stats
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                 var totalGens = allDatasets.length;
                 var totalRows = allDatasets.reduce(function(s, g) { return s + (g.rows || 0); }, 0);
                 var fromModels = allDatasets.filter(function(g) { return g.modelName; }).length;
 
                 document.getElementById('dashboard-stats').innerHTML =
+<<<<<<< HEAD
                     '<div class="stat-card"><div class="stat-val">' + totalGens + '</div><div class="stat-label">' + _t('datasets.total_generations') + '</div></div>' +
                     '<div class="stat-card"><div class="stat-val">' + totalRows.toLocaleString() + '</div><div class="stat-label">' + _t('datasets.total_rows') + '</div></div>' +
                     '<div class="stat-card"><div class="stat-val">' + fromModels + '</div><div class="stat-label">' + _t('datasets.from_models') + '</div></div>' +
                     '<div class="stat-card" style="border-left-color:#FF9800;"><div class="stat-val">' + (totalGens > 0 ? Math.round(totalRows / totalGens).toLocaleString() : 0) + '</div><div class="stat-label">' + _t('datasets.avg_rows') + '</div></div>';
+=======
+                    '<div class="stat-card"><div class="stat-val">' + totalGens + '</div><div class="stat-label">Total Generations</div></div>' +
+                    '<div class="stat-card"><div class="stat-val">' + totalRows.toLocaleString() + '</div><div class="stat-label">Total Rows</div></div>' +
+                    '<div class="stat-card"><div class="stat-val">' + fromModels + '</div><div class="stat-label">From Models</div></div>' +
+                    '<div class="stat-card" style="border-left-color:#FF9800;"><div class="stat-val">' + (totalGens > 0 ? Math.round(totalRows / totalGens).toLocaleString() : 0) + '</div><div class="stat-label">Avg Rows/Generation</div></div>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 
                 applyFilters();
             }
@@ -235,8 +300,13 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                 if (filteredDatasets.length === 0) {
                     tbody.innerHTML = '';
                     emptyEl.style.display = 'block';
+<<<<<<< HEAD
                     emptyEl.innerHTML = '<p>' + _t('datasets.no_results') + '</p>' +
                         (allDatasets.length === 0 ? '<p style="margin-top:0.5rem;"><a href="generate_data.html">' + _t('datasets.generate_first') + '</a></p>' : '');
+=======
+                    emptyEl.innerHTML = '<p>No datasets match your criteria.</p>' +
+                        (allDatasets.length === 0 ? '<p style="margin-top:0.5rem;"><a href="generate_data.html">Generate your first dataset</a></p>' : '');
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     pagination.innerHTML = '';
                     return;
                 }
@@ -254,6 +324,7 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                     var modelName = g.modelName || 'Standalone';
                     var modelVer = g.modelVersion || '-';
                     var levelClass = levelClasses[g.level] || 'badge-free';
+<<<<<<< HEAD
 
                     var actions =
                         '<div class="actions-cell">' +
@@ -263,6 +334,22 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                         '<button onclick="deleteGeneration(' + g.id + ')" style="color:#C62828;border-color:#FFCDD2;" title="' + _t('action.delete') + '">' + _t('action.delete') + '</button>' +
                         '</div>';
 
+=======
+                    var fileUrl = g.fileUrl || '';
+
+                    var actions =
+                        '<div class="actions-cell">' +
+                        '<button onclick="previewGeneration(' + g.id + ')" title="Preview first 10 rows">Preview</button>' +
+                        '<a href="data_evaluation.html?id=' + g.id + '" class="btn-eval" title="Compare with original data">Evaluate</a>' +
+                        '<button onclick="exportGeneration(' + g.id + ')" title="Download CSV">Export</button>' +
+                        '<button onclick="deleteGeneration(' + g.id + ')" style="color:#C62828;border-color:#FFCDD2;" title="Delete">Delete</button>' +
+                        '</div>';
+
+                    var fileLinkHtml = fileUrl ?
+                        '<span class="file-link" onclick="exportGeneration(' + g.id + ')" title="Click to download from cloud">' + fileUrl.substring(0, 30) + '...</span>' :
+                        '<span style="color:#999;font-size:0.75rem;">Not available</span>';
+
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     return '<tr>' +
                         '<td><span class="model-badge">' + modelName + '</span></td>' +
                         '<td><span class="version-badge">v' + modelVer + '</span></td>' +
@@ -270,12 +357,17 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                         '<td><strong>' + (g.rows || 0).toLocaleString() + '</strong></td>' +
                         '<td>' + dateStr + '</td>' +
                         '<td>' + timeStr + '</td>' +
+<<<<<<< HEAD
+=======
+                        '<td>' + fileLinkHtml + '</td>' +
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                         '<td>' + actions + '</td></tr>';
                 }).join('');
 
                 // Pagination
                 var totalPages = Math.ceil(filteredDatasets.length / perPage);
                 if (totalPages <= 1) {
+<<<<<<< HEAD
                     pagination.innerHTML = '<span class="page-info">' + filteredDatasets.length + ' ' + _t('pagination.entries') + '</span>';
                 } else {
                     var ph = '<button data-page="prev" ' + (currentPage === 1 ? 'disabled' : '') + '>&larr; ' + _t('pagination.prev') + '</button>';
@@ -284,6 +376,16 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
                     }
                     ph += '<button data-page="next" ' + (currentPage === totalPages ? 'disabled' : '') + '>' + _t('pagination.next') + ' &rarr;</button>';
                     ph += '<span class="page-info">' + _t('pagination.page') + ' ' + currentPage + ' ' + _t('pagination.of') + ' ' + totalPages + ' (' + filteredDatasets.length + ' ' + _t('dashboard.total') + ')</span>';
+=======
+                    pagination.innerHTML = '<span class="page-info">' + filteredDatasets.length + ' generation(s)</span>';
+                } else {
+                    var ph = '<button data-page="prev" ' + (currentPage === 1 ? 'disabled' : '') + '>&larr; Prev</button>';
+                    for (var i = 1; i <= totalPages; i++) {
+                        ph += '<button class="' + (i === currentPage ? 'active' : '') + '" data-page="' + i + '">' + i + '</button>';
+                    }
+                    ph += '<button data-page="next" ' + (currentPage === totalPages ? 'disabled' : '') + '>Next &rarr;</button>';
+                    ph += '<span class="page-info">Page ' + currentPage + ' of ' + totalPages + ' (' + filteredDatasets.length + ' total)</span>';
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
                     pagination.innerHTML = ph;
                 }
             }
@@ -319,7 +421,11 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
         function previewGeneration(id) {
             var rows = DataService.getGenerationPreviewRows(id, 10);
             var gen = DataService.getGenerationById(id);
+<<<<<<< HEAD
             if (!rows || !gen) { alert(_t('empty.no_data')); return; }
+=======
+            if (!rows || !gen) { alert('No preview data available.'); return; }
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 
             var preview = gen.preview;
             var headers = preview ? preview.headers : Object.keys(rows[0]);
@@ -345,11 +451,19 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
 
         function exportGeneration(id) {
             var ok = DataService.exportGeneration(id);
+<<<<<<< HEAD
             if (!ok) alert(_t('datasets.export_failed'));
         }
 
         function deleteGeneration(id) {
             if (!confirm(_t('confirm.delete_dataset'))) return;
+=======
+            if (!ok) alert('Export failed. The dataset may no longer be available.');
+        }
+
+        function deleteGeneration(id) {
+            if (!confirm('Delete this generation permanently?')) return;
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
             var gens = DataService.getGenerations().filter(function(g) { return g.id !== id; });
             localStorage.setItem('synthai_generations', JSON.stringify(gens));
             // Clear cached data
@@ -360,6 +474,9 @@ try { App.setupLanguageSwitcher(); } catch (e) {} } catch (e) {}
             location.reload();
         }
     </script>
+<<<<<<< HEAD
 <script>if (typeof I18nService !== 'undefined') I18nService.translatePage();</script>
+=======
+>>>>>>> 77fea5cbce6bcb2a708d95321eab17435c09e564
 </body>
 </html>
