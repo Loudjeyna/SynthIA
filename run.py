@@ -1,6 +1,6 @@
 import http.server, socketserver, os, sys, socket
 
-os.chdir(r'D:\Lodj_Memoire\SynthAI\frontend')
+os.chdir(r'C:\Users\loudj\OneDrive\Documents\GitHub\Synth_AI\frontend')
 
 def find_free_port(start=8080, end=8090):
     for port in range(start, end):
@@ -25,7 +25,7 @@ server = http.server.ThreadingHTTPServer(
 print('=' * 50)
 print('  SynthAI Server Running!')
 print('=' * 50)
-print(f'  Open: http://127.0.0.1:{port}/pages/login.html')
+print(f'  Open: http://127.0.0.1:{port}/pages/first.html')
 print('  Login: admin / admin123')
 print('  Ctrl+C to stop.')
 print('=' * 50)
